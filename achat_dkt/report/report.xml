@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<odoo>
+	<report
+	    id="report_boncommande"
+		string="Bon de Commande DKT"
+		model="purchase.order"
+		report_type="qweb-pdf"
+		name="achat_dkt.AchatDKT_commande"
+		file="achat_dkt.AchatDKT_commande"/>
+		
+	
+	
+	
+	
+
+</odoo>
