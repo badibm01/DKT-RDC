@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+        <!-- Top menu item -->
+        
+
+       <!--  <menuitem id="menu_procurement_management" name="Orders"
+            parent="menu_purchase_root" sequence="1" /> -->
+
+        <!--Supplier menu-->
+        
+
+
+
+       
+
+        
+        
+
+        <record id="purchase_order_form_demamde_achat" model="ir.ui.view">
+        <field name="name">purchase.order.inherited.form.demamde_achat</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+            
+            <xpath expr="//page[@name='purchase_delivery_invoice']" position="after">
+			
+			   <page name="achat_dkt" string="AUTRES DEPENSES" col="1" >
+                            <field name="autre_id" editable="bottom" attrs="{'readonly':[('state','=','purchase')]}"  >
+							<tree editable="bottom">
+                                            
+                                <field name="produit_id" domain="[('detailed_type','=','service')]" />
+                                <field name="montant" sum="Total amount"/>
+                                            
+                            </tree>
+                        </field>
+                        </page>
+                   
+                   
+                    
+                    
+                </xpath>
+				 <xpath expr="//field[@name='currency_id']" position="after">
+                   
+                   
+                     <field name="total_facture"/>
+                    
+                </xpath>
+				 <xpath expr="//field[@name='partner_ref']" position="after">
+                   
+                   
+                     <field name="bailleur_id"/>
+                    
+                </xpath>
+                
+                <!-- valide="brouillon" -->
+        </field>
+        </record>
+		
+		
+		<record id="view_Picking_inherit" model="ir.ui.view">
+            <field name="name">stock.picking.form.inherit</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+			
+			
+			     <xpath expr="//field[@name='origin']" position="after">
+                        <field name="bailleur_id" readonly="1"/>
+                        
+                 </xpath>
+				 
+				
+		
+		
+		</field>
+        </record>
+		
+		<record id="view_Move_line_inherit" model="ir.ui.view">
+            <field name="name">stock.move.line.tree.inherit</field>
+            <field name="model">stock.move.line</field>
+            <field name="inherit_id" ref="stock.view_move_line_tree"/>
+            <field name="arch" type="xml">
+			
+			
+			     <xpath expr="//field[@name='reference']" position="after">
+                        <field name="bailleur_id" readonly="1"/>
+                        
+                 </xpath>
+				 
+				
+		
+		
+		</field>
+        </record>
+
+
+
+
+       
+
+        
+
+
+
+      
+
+
+
+        <record id="achat_dkt_tree" model="ir.ui.view">
+            <field name="name">achat_dkt.tree</field>
+            <field name="model">achat.dkt</field>
+            <field name="priority" eval="1"/>
+            <field name="arch" type="xml">
+                <tree string="Achat dkt">
+                    
+                    <field name="produit_id"/>
+                    <field name="montant" />
+                   
+                    
+                </tree>
+            </field>
+        </record>
+
+       
+
+
+       
+
+    
+
+    
+
+    
+
+
+
+      
+
+        
+
+
+
+
+        
+</odoo>
